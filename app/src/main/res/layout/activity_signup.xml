@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue">
+
+    <ImageView
+        android:id="@+id/imgLogoSignUp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_digital_campaign"/>
+
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Sign_Up"
+        android:textColor="#f0f0f0"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/imgLogoSignUp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:layout_marginTop="85dp"
+        android:layout_below="@+id/tvSignUp"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/emailFieldRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/white"
+            android:singleLine="true"/>
+
+        <EditText
+            android:id="@+id/passwordFieldRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:textSize="16sp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@android:color/white"
+            android:singleLine="true"/>
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:textSize="16sp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="Register"
+            android:background="@drawable/rounded"/>
+
+        <TextView
+            android:id="@+id/tvBackLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSignUp"
+            android:textSize="17sp"
+            android:paddingTop="20dp"
+            android:textColor="#f0f0f0"
+            android:text="Have account? Click Here"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

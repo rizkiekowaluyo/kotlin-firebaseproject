@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyProject</string>
+    <string name="Login_gmail">Login</string>
+    <string name="Loginwithfacebook">Login with Facebook</string>
+    <string name="Loginwithgoogle">Login with Google</string>
+    <string name="Sign_Up">Register</string>
+    <string name="Reset_Password">reset password</string>
+</resources>

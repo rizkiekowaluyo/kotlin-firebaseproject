@@ -5,4 +5,5 @@
     <string name="Loginwithgoogle">Login with Google</string>
     <string name="Sign_Up">Register</string>
     <string name="Reset_Password">reset password</string>
+    <string name="facebook_app_id"></string>
 </resources>

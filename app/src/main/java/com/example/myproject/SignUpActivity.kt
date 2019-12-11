@@ -2,9 +2,12 @@ package com.example.myproject
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignUpActivity: AppCompatActivity(), View.OnClickListener {
@@ -29,6 +32,20 @@ class SignUpActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun signUpEmailAndPassword(email: String, password: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        auth!!.createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener(this){task ->
+                if(task.isSuccessful){
+                    Log.d(TAG, "createUserWithEmail:success")
+                    Toast.makeText(baseContext,"Succesfully Created",Toast.LENGTH_SHORT).show()
+                }else{
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    companion object{
+        private  const val TAG = "CreateUser"
     }
 }

@@ -6,8 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
+import com.facebook.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,20 +16,24 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_signin.*
-import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
+import java.util.*
 
 
 class SignInActivity: AppCompatActivity(), View.OnClickListener {
 
     var auth: FirebaseAuth? = null
     lateinit var googleSignInClient: GoogleSignInClient
+    private var callbackManager: CallbackManager? = null
     //private lateinit var callbackManager: CallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
+        FacebookSdk.sdkInitialize(applicationContext)
         setContentView(R.layout.activity_signin)
 
         btnLogin.setOnClickListener(this)
@@ -63,6 +66,7 @@ class SignInActivity: AppCompatActivity(), View.OnClickListener {
             }
         }else if (requestCode == RC_SIGN_IN_FACEBOOK){
            // callbackManager.onActivityResult(RC_SIGN_IN_FACEBOOK,resultCode,data)
+            callbackManager?.onActivityResult(requestCode, resultCode, data)
         }
 
     }
@@ -110,6 +114,23 @@ class SignInActivity: AppCompatActivity(), View.OnClickListener {
 //                    updateUI(null)
 //                }
 //            }
+        callbackManager = CallbackManager.Factory.create()
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    Log.d("MainActivity", "Facebook token: " + loginResult.accessToken.token)
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                }
+                override fun onCancel() {
+                    Log.d("MainActivity", "Facebook onCancel.")
+                }
+                override fun onError(error: FacebookException) {
+                    Log.d("MainActivity", "Facebook onError.")
+
+                }
+            })
+
     }
 
     private fun signInWithGmail() {
